@@ -1,0 +1,31 @@
+{
+    "name": "oasis-wellbeing",
+    "version": "1.0.0",
+    "description": "Mental Health App",
+    "main": "index.js",
+    "scripts": {
+        "start": "npx nodemon --exec babel-node index.js | bunyan",
+        "test": "node index.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/RevibeZ/Oasis-Wellbeing.git"
+    },
+    "author": "Harshitha, Vishwas & Erwin",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/RevibeZ/Oasis-Wellbeing/issues"
+    },
+    "homepage": "https://github.com/RevibeZ/Oasis-Wellbeing#readme",
+    "devDependencies": {
+        "@babel/cli": "^7.23.0",
+        "@babel/core": "^7.23.2",
+        "@babel/preset-env": "^7.23.2",
+        "jest": "^29.7.0",
+        "nodemon": "^3.0.1"
+    },
+    "dependencies": {
+        "@hapi/hapi": "^21.3.2",
+        "pg": "^8.11.3"
+    }
+}

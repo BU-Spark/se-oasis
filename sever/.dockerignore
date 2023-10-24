@@ -1,0 +1,17 @@
+# Ignore the Node Modules
+node_modules/
+
+# Other Files
+.history
+.vscode
+.git
+build
+dist
+coverage*
+lcov*
+
+yarn.lock
+npm-debug.log
+
+pgdata/
+docker-compose.yml

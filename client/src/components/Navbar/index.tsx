@@ -20,7 +20,13 @@ function Navbar() {
         // throw new Error("Function not implemented.");
         return;
     };
-    // #f5f5f5
+
+    const handleSignUp = () => {
+        navigate("/register");
+        // throw new Error("Function not implemented.");
+        return;
+    };
+
     return (
         <>
             <Grid container xs={12} sx={{ position: "sticky", top: 0 }}>
@@ -88,6 +94,7 @@ function Navbar() {
                                             backgroundColor: "white",
                                             color: "#000000",
                                         }}
+                                        onClick={handleSignUp}
                                     >
                                         SignUp
                                     </Button>

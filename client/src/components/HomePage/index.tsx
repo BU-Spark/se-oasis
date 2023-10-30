@@ -5,6 +5,7 @@ import React from "react";
 import neonBg from "./../../assests/Homepageyellow.jpeg";
 //bright-yellow-neon-green-wallpaper-preview.jpg";
 import homePgBg2 from "./../../assests/Emotions.png";
+import homePgBg3 from "./../../assests/Phone.png";
 
 // function HomePage() {
 //     return (
@@ -229,7 +230,6 @@ const HomePage = () => {
                         height: "100%",
                         backgroundImage: `url(${neonBg})`,
                         backgroundSize: "cover",
-                        //borderRadius: "10px",
                         display: "flex",
                         flexDirection: "column",
                         alignItems: "center",
@@ -307,6 +307,52 @@ const HomePage = () => {
                     >
                         Your content goes here. You can add text buttons or any
                         other content you need.
+                    </Typography>
+                </Paper>
+            </Grid>
+
+            <Grid
+                item
+                xs={12}
+                sx={{
+                    height: "100%",
+                    mt: 2,
+                    padding: "20px 24px 40px",
+                }}
+            >
+                <Paper
+                    sx={{
+                        height: "100%",
+                        Image: `url(${homePgBg3})`,
+
+                        borderRadius: "15px",
+                        display: "flex",
+                        flexDirection: "column",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        boxSizing: "border-box",
+                    }}
+                >
+                    <div>
+                        <img src={homePgBg3} />
+                    </div>
+                    <Typography
+                        variant="h3"
+                        sx={{
+                            color: "black",
+                            mb: 2,
+                            textAlign: "right",
+                            justifyContent: "right",
+                            alignItems: "right",
+                        }}
+                    >
+                        Your Title
+                    </Typography>
+                    <Typography
+                        variant="body1"
+                        sx={{ color: "white", mb: 4, textAlign: "right" }}
+                    >
+                        {/* Your content goes here. You can add text, buttons, or any other content you need. */}
                     </Typography>
                 </Paper>
             </Grid>

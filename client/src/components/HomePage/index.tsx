@@ -5,7 +5,10 @@ import React from "react";
 import neonBg from "./../../assests/Homepageyellow.jpeg";
 //bright-yellow-neon-green-wallpaper-preview.jpg";
 import homePgBg2 from "./../../assests/Emotions.png";
+<<<<<<< HEAD
 import homePgBg3 from "./../../assests/Phone.png";
+=======
+>>>>>>> 5d93f98 (Home Page Code push)
 
 // function HomePage() {
 //     return (
@@ -230,6 +233,10 @@ const HomePage = () => {
                         height: "100%",
                         backgroundImage: `url(${neonBg})`,
                         backgroundSize: "cover",
+<<<<<<< HEAD
+=======
+                        //borderRadius: "10px",
+>>>>>>> 5d93f98 (Home Page Code push)
                         display: "flex",
                         flexDirection: "column",
                         alignItems: "center",

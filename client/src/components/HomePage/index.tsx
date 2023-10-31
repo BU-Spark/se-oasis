@@ -233,10 +233,6 @@ const HomePage = () => {
                         height: "100%",
                         backgroundImage: `url(${neonBg})`,
                         backgroundSize: "cover",
-<<<<<<< HEAD
-=======
-                        //borderRadius: "10px",
->>>>>>> 5d93f98 (Home Page Code push)
                         display: "flex",
                         flexDirection: "column",
                         alignItems: "center",

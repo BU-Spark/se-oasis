@@ -21,6 +21,12 @@ function Navbar() {
         return;
     };
 
+    const handleSignUp = () => {
+        navigate("/register");
+        // throw new Error("Function not implemented.");
+        return;
+    };
+
     return (
         <>
             <Grid container xs={12}>
@@ -73,6 +79,7 @@ function Navbar() {
                                             display: "flex",
                                             justifyContent: "right",
                                         }}
+                                        onClick={handleSignUp}
                                     >
                                         SignUp
                                     </Button>

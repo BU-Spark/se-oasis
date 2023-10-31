@@ -5,10 +5,7 @@ import React from "react";
 import neonBg from "./../../assests/Homepageyellow.jpeg";
 //bright-yellow-neon-green-wallpaper-preview.jpg";
 import homePgBg2 from "./../../assests/Emotions.png";
-<<<<<<< HEAD
 import homePgBg3 from "./../../assests/Phone.png";
-=======
->>>>>>> 5d93f98 (Home Page Code push)
 
 // function HomePage() {
 //     return (

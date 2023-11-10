@@ -1,11 +1,10 @@
-import { Button, Grid, Paper, Typography } from "@mui/material";
+import { Button, CardMedia, Grid, Paper, Typography } from "@mui/material";
 import React from "react";
 // import Navbr from "../Navbar";
 // import homepagebg1 from "./../../assests/Homepagebg3.png";
-import neonBg from "./../../assests/Homepageyellow.jpeg";
+import neonBg from "./../../assests/oasis.jpg";
 //bright-yellow-neon-green-wallpaper-preview.jpg";
-import homePgBg2 from "./../../assests/Emotions.png";
-import homePgBg3 from "./../../assests/Phone.png";
+import homePgBg2 from "./../../assests/workOasis.jpg";
 
 // function HomePage() {
 //     return (
@@ -211,38 +210,50 @@ const HomePage = () => {
             justifyContent="center"
             alignItems="center"
             sx={{
-                height: "100vh",
+                // height: "90vh",
                 paddingRight: "90px",
                 paddingLeft: "90px",
             }}
         >
             <Grid
                 item
-                xs={12}
+                xs={10}
                 sx={{
-                    height: "100%",
+                    height: "90vh",
                     padding: "40px 24px 40px",
                 }}
             >
                 <Paper
-                    style={{ borderRadius: "15px" }}
+                    elevation={0}
+                    style={{ borderRadius: "10px" }}
                     sx={{
-                        height: "100%",
+                        height: "65vh",
                         backgroundImage: `url(${neonBg})`,
                         backgroundSize: "cover",
                         display: "flex",
                         flexDirection: "column",
                         alignItems: "center",
-                        justifyContent: "center",
+                        justifyContent: "space-evenly",
                         boxSizing: "border-box",
                     }}
                 >
-                    <Typography variant="h1" sx={{ color: "black", mb: 2 }}>
-                        Whats on your mind?
+                    <Typography
+                        variant="h1"
+                        sx={{
+                            color: "black",
+                            fontWeight: "bold",
+                            fontFamily: "cursive",
+                        }}
+                    >
+                        What&apos;s on your mind?
                     </Typography>
                     <Typography
                         variant="h4"
-                        sx={{ color: "black", mb: 4, textAlign: "center" }}
+                        sx={{
+                            color: "black",
+                            mb: 4,
+                            textAlign: "center",
+                        }}
                     >
                         An AI-powered journal for mental health and personal
                         growth.
@@ -251,7 +262,7 @@ const HomePage = () => {
                         variant="contained"
                         style={{
                             fontSize: "20px",
-                            padding: "10px 60px",
+                            padding: "10px 40px",
                             borderRadius: "5px",
                             margin: "10px 0px",
                             cursor: "pointer",
@@ -269,92 +280,83 @@ const HomePage = () => {
 
             <Grid
                 item
-                xs={12}
+                container
+                xs={10}
                 sx={{
-                    height: "100%",
-                    mt: 2,
-                    padding: "20px 24px 40px",
+                    height: "90vh",
+                    padding: "40px 24px 40px",
                 }}
             >
-                <Paper
-                    sx={{
-                        height: "100%",
-                        backgroundImage: `url(${homePgBg2})`,
-                        backgroundSize: "cover",
-                        borderRadius: "15px",
-                        display: "flex",
-                        flexDirection: "column",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        boxSizing: "border-box",
-                    }}
-                >
-                    <Typography
-                        variant="h3"
+                <Grid item container sx={{ height: "35vh" }} spacing={3}>
+                    <Grid
+                        item
+                        xs={4}
+                        alignItems={"center"}
+                        justifyContent={"center"}
+                    >
+                        <div
+                            style={{
+                                paddingBottom: "100%",
+                                display: "block",
+                                position: "relative",
+                            }}
+                        >
+                            <CardMedia
+                                component={"img"}
+                                style={{
+                                    position: "absolute",
+                                    left: 0,
+                                    top: 0,
+                                    height: "auto",
+                                    objectFit: "scale-down",
+                                }}
+                                image={`${homePgBg2}`}
+                            />
+                        </div>
+                        {/* <Paper
+                        elevation={0}
                         sx={{
-                            alignItems: "right",
-                            justifyContent: "right",
-                            color: "white",
-                            mb: 2,
-                            textAlign: "right",
+                            height: "100%",
+                            backgroundImage: `url(${homePgBg2})`,
+                            // backgroundSize: "cover",
+                            backgroundRepeat: "no-repeat",
+                            borderRadius: "15px",
+                            display: "flex",
+                            flexDirection: "column",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            boxSizing: "border-box",
+                            overflow: "hidden",
                         }}
+                    ></Paper> */}
+                    </Grid>
+                    <Grid
+                        item
+                        container
+                        xs={8}
+                        spacing={2}
+                        alignItems={"center"}
+                        justifyContent={"center"}
                     >
-                        Your Title
-                    </Typography>
-                    <Typography
-                        variant="body1"
-                        sx={{ color: "white", mb: 4, textAlign: "right" }}
-                    >
-                        Your content goes here. You can add text buttons or any
-                        other content you need.
-                    </Typography>
-                </Paper>
-            </Grid>
-
-            <Grid
-                item
-                xs={12}
-                sx={{
-                    height: "100%",
-                    mt: 2,
-                    padding: "20px 24px 40px",
-                }}
-            >
-                <Paper
-                    sx={{
-                        height: "100%",
-                        Image: `url(${homePgBg3})`,
-
-                        borderRadius: "15px",
-                        display: "flex",
-                        flexDirection: "column",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        boxSizing: "border-box",
-                    }}
-                >
-                    <div>
-                        <img src={homePgBg3} />
-                    </div>
-                    <Typography
-                        variant="h3"
-                        sx={{
-                            color: "black",
-                            mb: 2,
-                            textAlign: "right",
-                            justifyContent: "right",
-                            alignItems: "right",
-                        }}
-                    >
-                        Your Title
-                    </Typography>
-                    <Typography
-                        variant="body1"
-                        sx={{ color: "white", mb: 4, textAlign: "right" }}
-                    >
-                        {/* Your content goes here. You can add text, buttons, or any other content you need. */}
-                    </Typography>
-                </Paper>
+                        <Typography
+                            variant="h3"
+                            sx={{
+                                color: "black",
+                                textAlign: "center",
+                                fontFamily: "-moz-initial",
+                            }}
+                        >
+                            Drop everything and <br /> let Oasis do the work
+                        </Typography>
+                        <Typography
+                            variant="body1"
+                            sx={{ color: "black", textAlign: "center" }}
+                        >
+                            Your content goes here. You can add text buttons or
+                            any other content you need.
+                        </Typography>
+                    </Grid>
+                </Grid>
             </Grid>
         </Grid>
     );

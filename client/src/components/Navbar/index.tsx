@@ -29,7 +29,11 @@ function Navbar() {
 
     return (
         <>
-            <Grid container xs={12} sx={{ position: "sticky", top: 0 }}>
+            <Grid
+                container
+                xs={12}
+                sx={{ position: "sticky", top: 0, elevation: "90deg" }}
+            >
                 <Grid item xs={12}>
                     <Box sx={{ flexGrow: 1 }}>
                         <AppBar

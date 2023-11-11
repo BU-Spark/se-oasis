@@ -29,10 +29,17 @@ function Navbar() {
 
     return (
         <>
-            <Grid container xs={12}>
+            <Grid
+                container
+                xs={12}
+                sx={{ position: "sticky", top: 0, elevation: "90deg" }}
+            >
                 <Grid item xs={12}>
                     <Box sx={{ flexGrow: 1 }}>
-                        <AppBar position="static">
+                        <AppBar
+                            position="static"
+                            sx={{ bgcolor: "#143155", paddingRight: 0 }}
+                        >
                             {/* <Paper
                                 style={{
                                     border: "none",
@@ -41,13 +48,21 @@ function Navbar() {
                                     backgroundColor: "#03326c",
                                 }}
                             /> */}
-                            <Toolbar>
+                            <Toolbar
+                                sx={{
+                                    justifyContent: "space-between",
+                                    paddingRight: 0,
+                                }}
+                            >
                                 <IconButton
                                     size="large"
                                     edge="start"
-                                    color="inherit"
                                     aria-label="menu"
-                                    sx={{ mr: 2 }}
+                                    sx={{
+                                        mr: 2,
+                                        backgroundColor: "white",
+                                        color: "#000000",
+                                    }}
                                 >
                                     <MenuIcon />
                                 </IconButton>
@@ -66,6 +81,8 @@ function Navbar() {
                                         style={{
                                             display: "flex",
                                             justifyContent: "right",
+                                            backgroundColor: "white",
+                                            color: "#000000",
                                         }}
                                         onClick={handleLogin}
                                     >
@@ -78,6 +95,8 @@ function Navbar() {
                                         style={{
                                             display: "flex",
                                             justifyContent: "right",
+                                            backgroundColor: "white",
+                                            color: "#000000",
                                         }}
                                         onClick={handleSignUp}
                                     >

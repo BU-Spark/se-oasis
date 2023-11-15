@@ -12,10 +12,22 @@ import {
 } from "@mui/material";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { auth } from "./../../../utils/firebaseAuth";
+import { signInWithEmailAndPassword } from "firebase/auth";
 
 function Signin() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+
+    const handleLogin = () => {
+        signInWithEmailAndPassword(auth, email, password)
+            .then((userCredential) => {
+                console.log({ userCredential });
+            })
+            .catch((error) => {
+                console.log({ error });
+            });
+    };
 
     return (
         <>
@@ -64,7 +76,7 @@ function Signin() {
                             fullWidth
                             variant="contained"
                             sx={{ mt: 3, mb: 2 }}
-                            // onClick={() => handleLogin()}
+                            onClick={() => handleLogin()}
                         >
                             Login
                         </Button>

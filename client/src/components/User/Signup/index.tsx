@@ -11,6 +11,8 @@ import {
     Grid,
 } from "@mui/material";
 import { Link } from "react-router-dom";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../../../utils/firebaseAuth";
 
 function Signup() {
     const [email, setEmail] = useState("");
@@ -23,9 +25,14 @@ function Signup() {
             alert("Passwords do not match!");
             return;
         }
-        
-        // Send data to backend for registration (e.g., using fetch or axios)
-        // For simplicity, just alerting the user for now
+
+        createUserWithEmailAndPassword(auth, email, password)
+            .then((userCredential) => {
+                console.log({ userCredential });
+            })
+            .catch((error) => {
+                console.log({ error });
+            });
         alert("Successfully signed up! Redirecting to login...");
     };
 

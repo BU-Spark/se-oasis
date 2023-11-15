@@ -4,8 +4,9 @@ import Signin from "./components/User/Signin";
 import HomePage from "./components/HomePage";
 import Signup from "./components/User/Signup";
 import Navbar from "./components/Navbar";
+import AboutPage from "./components/AboutPage";
 
-const Routers = () => (
+const Routers: React.FC = () => (
     <Suspense
         fallback={
             <>
@@ -19,6 +20,7 @@ const Routers = () => (
             <Route path="/" element={<HomePage />} />
             <Route path="/register" element={<Signup />} />
             <Route path="/signin" element={<Signin />} />
+            <Route path="/about" element={<AboutPage />} />
         </Routes>
     </Suspense>
 );

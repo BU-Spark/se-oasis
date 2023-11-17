@@ -6,7 +6,6 @@ const UserIndexRoute = {
         tags: ["api", "userIndexRoute"],
     },
     handler: async (request, h) => {
-        await request.broker.call("users.index");
         return h
             .response({
                 message: "Hi There! Welcome to User Index Route",

@@ -14,6 +14,8 @@ import { Link } from "react-router-dom";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../../utils/firebaseAuth";
 
+import axios from "axios";
+
 function Signup() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -27,10 +29,25 @@ function Signup() {
         }
 
         createUserWithEmailAndPassword(auth, email, password)
-            .then((userCredential) => {
+            .then(async (userCredential) => {
                 console.log({ userCredential });
+
+                axios
+                    .post("http://127.0.0.1:5675/api/v1/publish", {
+                        topicId: "userRegistered",
+                        data: {
+                            email,
+                            fullName,
+                        },
+                    })
+                    .then((response) => {
+                        console.log({ response });
+                    })
+                    .catch((error) => {
+                        console.log({ error });
+                    });
             })
-            .catch((error) => {
+            .catch((error: Error) => {
                 console.log({ error });
             });
         alert("Successfully signed up! Redirecting to login...");

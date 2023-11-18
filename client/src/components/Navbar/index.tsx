@@ -12,6 +12,7 @@ import {
 // import { useNavigate } from "react-router-dom";
 import MenuIcon from "@mui/icons-material/Menu";
 import { useNavigate } from "react-router";
+import logo from "./../../assests/Logo.png";
 
 function Navbar() {
     const navigate = useNavigate();
@@ -72,7 +73,22 @@ function Navbar() {
                                     component="div"
                                     sx={{ flexGrow: 1 }}
                                 ></Typography> */}
-
+                                {/* <div style={logoContainerStyle}> */}
+                                <div
+                                    style={{
+                                        display: "flex",
+                                        alignItems: "center",
+                                    }}
+                                >
+                                    <img
+                                        src={logo}
+                                        alt="Logo"
+                                        style={{
+                                            width: "50px",
+                                            height: "50px",
+                                        }}
+                                    />
+                                </div>
                                 <Stack direction="row" spacing={2}>
                                     <Button
                                         title="login"

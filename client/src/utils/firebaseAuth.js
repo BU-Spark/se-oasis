@@ -3,16 +3,15 @@ import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyBGKjV2Sc8PaEWfLyEXND3lKworsOLtVaw",
-    authDomain: "testproject-99773.firebaseapp.com",
-    projectId: "testproject-99773",
-    storageBucket: "testproject-99773.appspot.com",
-    messagingSenderId: "444290216430",
-    appId: "1:444290216430:web:eb238185b1c8c8bd465eff",
-    measurementId: "G-FY33TZK7F4",
+    apiKey: "AIzaSyCY4GwN-2OLHB8QQT5-Xk8r7pmztU0_Aws",
+    authDomain: "spark-se-oasis-wellbeing-bu.firebaseapp.com",
+    projectId: "spark-se-oasis-wellbeing-bu",
+    storageBucket: "spark-se-oasis-wellbeing-bu.appspot.com",
+    messagingSenderId: "71153214742",
+    appId: "1:71153214742:web:72e99048241cc0f3a9dc37",
+    measurementId: "G-QZXNDB0WM5",
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 // const analytics = getAnalytics(app);
 export const auth = getAuth(app);

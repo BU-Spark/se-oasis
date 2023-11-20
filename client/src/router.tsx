@@ -22,7 +22,7 @@ const Routers: React.FC = () => (
             <Route path="/register" element={<Signup />} />
             <Route path="/signin" element={<Signin />} />
             <Route path="/about" element={<AboutPage />} />
-            <Route path="/landingPage" element={<LandingPage />} />
+            <Route path="/home" element={<LandingPage />} />
         </Routes>
     </Suspense>
 );

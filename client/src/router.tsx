@@ -6,6 +6,7 @@ import Signup from "./components/User/Signup";
 import Navbar from "./components/Navbar";
 import AboutPage from "./components/AboutPage";
 import LandingPage from "./components/LandingPage";
+import Footer from "./components/Footer";
 
 const Routers: React.FC = () => (
     <Suspense
@@ -24,6 +25,9 @@ const Routers: React.FC = () => (
             <Route path="/about" element={<AboutPage />} />
             <Route path="/home" element={<LandingPage />} />
         </Routes>
+        <>
+            <Footer />
+        </>
     </Suspense>
 );
 

@@ -3,10 +3,10 @@ import { Route, Routes } from "react-router-dom";
 import Signin from "./components/User/Signin";
 import HomePage from "./components/HomePage";
 import Signup from "./components/User/Signup";
-import Navbar from "./components/Navbar";
 import AboutPage from "./components/AboutPage";
 import LandingPage from "./components/LandingPage";
 import Footer from "./components/Footer";
+import Navbar from "./components/Navbar";
 
 const Routers: React.FC = () => (
     <Suspense

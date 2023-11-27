@@ -7,7 +7,19 @@ const Footer: React.FC = () => {
     const bgStyle = { backgroundColor: "#f5f5f5" };
 
     return (
-        <footer style={bgStyle} className="mt-auto py-5 text-center ">
+        <footer
+            style={{
+                ...bgStyle,
+                paddingTop: "5px",
+                paddingBottom: "5px",
+                paddingLeft: "20px",
+                paddingRight: "20px",
+                position: "relative",
+                bottom: "0",
+                width: "100%",
+            }}
+            className="mt-auto py-5 text-center "
+        >
             <Container>
                 <>
                     {getInTouch.show && (

@@ -42,10 +42,10 @@ function Signin() {
 
                 console.log(userCredential.user);
                 // const stsTokenManager = userCredential.user.stsTokenManager;
-                // localStorage.setItem(
-                //     "token",
-                //     JSON.stringify(userCredential.user.toJSON().stsTokenManager.accesstoken)
-                // );
+                localStorage.setItem(
+                    "token",
+                    JSON.stringify(userCredential.user)
+                );
             }
         );
         // .catch((error) => {
@@ -59,7 +59,7 @@ function Signin() {
                 <CssBaseline />
                 <Box
                     sx={{
-                        mt: 20,
+                        mt: 15,
                         display: "flex",
                         flexDirection: "column",
                         alignItems: "center",

@@ -1,131 +1,279 @@
-import React from "react";
-// { useContext, useState, useEffect }
-import {
-    Toolbar,
-    IconButton,
-    Grid,
-    Box,
-    AppBar,
-    Button,
-    Stack,
-} from "@mui/material";
-// import { useNavigate } from "react-router-dom";
+import * as React from "react";
+import AppBar from "@mui/material/AppBar";
+import Box from "@mui/material/Box";
+import Toolbar from "@mui/material/Toolbar";
+import IconButton from "@mui/material/IconButton";
+import Typography from "@mui/material/Typography";
+import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
+import Container from "@mui/material/Container";
+import Avatar from "@mui/material/Avatar";
+import Button from "@mui/material/Button";
+import Tooltip from "@mui/material/Tooltip";
+import MenuItem from "@mui/material/MenuItem";
+import AdbIcon from "@mui/icons-material/Adb";
 import { useNavigate } from "react-router";
-import logo from "./../../assests/Logo.png";
+import Logo from "./../../assests/Logo.png";
+import { auth } from "./../../utils/firebaseAuth";
+import { signOut } from "firebase/auth";
 
-function Navbar() {
+const pages = ["Products", "Pricing", "Blog"];
+const settings = ["Profile", "Account", "Dashboard", "Logout"];
+
+const Navbar: React.FunctionComponent = () => {
+    const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
+        null
+    );
+    const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
+        null
+    );
+
+    const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
+        setAnchorElNav(event.currentTarget);
+    };
+    const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
+        setAnchorElUser(event.currentTarget);
+    };
+
+    const handleCloseNavMenu = () => {
+        setAnchorElNav(null);
+    };
+
+    const handleCloseUserMenu = () => {
+        setAnchorElUser(null);
+    };
+
+    const handleProfileClick = () => {
+        setAnchorElUser(null);
+    };
+
+    const handleAccountClick = () => {
+        setAnchorElUser(null);
+    };
+
+    const handleDashboardClick = () => {
+        setAnchorElUser(null);
+    };
+
+    const handleLogoutClick = () => {
+        setAnchorElUser(null);
+        signOut(auth)
+            .then(() => {
+                localStorage.removeItem("token");
+                navigate("/");
+            })
+            .catch((error) => {
+                console.log(`Logout Error: ${error}`);
+            });
+    };
+
+    const handlerFunctions = [
+        handleProfileClick,
+        handleAccountClick,
+        handleDashboardClick,
+        handleLogoutClick,
+    ];
+
     const navigate = useNavigate();
     const handleLogin = () => {
         navigate("/signin");
-        // throw new Error("Function not implemented.");
-        return;
     };
 
-    const handleSignUp = () => {
-        navigate("/register");
-        // throw new Error("Function not implemented.");
-        return;
+    const handleLogoClick = () => {
+        navigate("/home");
     };
 
     return (
-        <>
-            <Grid
-                container
-                xs={12}
-                sx={{ position: "sticky", top: 0, elevation: "90deg" }}
-            >
-                <Grid item xs={12}>
-                    <Box sx={{ flexGrow: 1 }}>
-                        <AppBar
-                            position="static"
-                            sx={{ bgcolor: "#143155", paddingRight: 0 }}
+        <AppBar position="sticky">
+            <Container maxWidth="xl">
+                <Toolbar disableGutters>
+                    {/* <AdbIcon
+                        sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}
+                    /> */}
+
+                    <Box
+                        component="img"
+                        sx={{
+                            width: 46,
+                            height: 46,
+                            overflow: "hidden",
+                            marginTop: "-6px",
+                            borderRadius: "25%",
+                        }}
+                        alt="Logo"
+                        src={Logo}
+                        onClick={handleLogoClick}
+                    />
+                    {/* <img
+                        src={Logo}
+                        alt="Kitty Katty!"
+                        //className={classes.logo}
+                        width="4%"
+                        height="4%"
+                    /> */}
+
+                    <Typography
+                        variant="h6"
+                        noWrap
+                        component="a"
+                        href="#app-bar-with-responsive-menu"
+                        sx={{
+                            mr: 2,
+                            display: { xs: "none", md: "flex" },
+                            fontFamily: "monospace",
+                            fontWeight: 700,
+                            letterSpacing: ".3rem",
+                            color: "inherit",
+                            textDecoration: "none",
+                            padding: "10px",
+                        }}
+                    >
+                        Oasis
+                    </Typography>
+
+                    <Box
+                        sx={{
+                            flexGrow: 1,
+                            display: { xs: "flex", md: "none" },
+                        }}
+                    >
+                        <IconButton
+                            size="large"
+                            aria-label="account of current user"
+                            aria-controls="menu-appbar"
+                            aria-haspopup="true"
+                            onClick={handleOpenNavMenu}
+                            color="inherit"
                         >
-                            {/* <Paper
-                                style={{
-                                    border: "none",
-                                    width: "100%",
-                                    height: "4em",
-                                    backgroundColor: "#03326c",
-                                }}
-                            /> */}
-                            <Toolbar
-                                sx={{
-                                    justifyContent: "space-between",
-                                    paddingRight: 0,
-                                }}
-                            >
-                                <IconButton
-                                    size="large"
-                                    edge="start"
-                                    aria-label="menu"
-                                    sx={{
-                                        mr: 2,
-                                        backgroundColor: "white",
-                                        color: "#000000",
-                                    }}
+                            <MenuIcon />
+                        </IconButton>
+                        <Menu
+                            id="menu-appbar"
+                            anchorEl={anchorElNav}
+                            anchorOrigin={{
+                                vertical: "bottom",
+                                horizontal: "left",
+                            }}
+                            keepMounted
+                            transformOrigin={{
+                                vertical: "top",
+                                horizontal: "left",
+                            }}
+                            open={Boolean(anchorElNav)}
+                            onClose={handleCloseNavMenu}
+                            sx={{
+                                display: { xs: "block", md: "none" },
+                            }}
+                        >
+                            {pages.map((page) => (
+                                <MenuItem
+                                    key={page}
+                                    onClick={handleCloseNavMenu}
                                 >
-                                    <MenuIcon />
-                                </IconButton>
-
-                                {/*<Typography
-                                    variant="h6"
-                                    component="div"
-                                    sx={{ flexGrow: 1 }}
-                                ></Typography> */}
-                                {/* <div style={logoContainerStyle}> */}
-                                <div
-                                    style={{
-                                        display: "flex",
-                                        alignItems: "center",
-                                    }}
-                                >
-                                    <img
-                                        src={logo}
-                                        alt="Logo"
-                                        style={{
-                                            width: "50px",
-                                            height: "50px",
-                                        }}
-                                    />
-                                </div>
-                                <Stack direction="row" spacing={2}>
-                                    <Button
-                                        title="login"
-                                        variant="contained"
-                                        // sx={{ mt: 1.8, mb: 2 }}
-                                        style={{
-                                            display: "flex",
-                                            justifyContent: "right",
-                                            backgroundColor: "white",
-                                            color: "#000000",
-                                        }}
-                                        onClick={handleLogin}
-                                    >
-                                        Login
-                                    </Button>
-                                    <Button
-                                        title="SignUp"
-                                        variant="contained"
-                                        // sx={{ mt: 1.8, mb: 2 }}
-                                        style={{
-                                            display: "flex",
-                                            justifyContent: "right",
-                                            backgroundColor: "white",
-                                            color: "#000000",
-                                        }}
-                                        onClick={handleSignUp}
-                                    >
-                                        SignUp
-                                    </Button>
-                                </Stack>
-                            </Toolbar>
-                        </AppBar>
+                                    <Typography textAlign="center">
+                                        {page}
+                                    </Typography>
+                                </MenuItem>
+                            ))}
+                        </Menu>
                     </Box>
-                </Grid>
-            </Grid>
-        </>
-    );
-}
+                    <AdbIcon
+                        sx={{ display: { xs: "flex", md: "none" }, mr: 1 }}
+                    />
+                    <Typography
+                        variant="h5"
+                        noWrap
+                        component="a"
+                        href="#app-bar-with-responsive-menu"
+                        sx={{
+                            mr: 2,
+                            display: { xs: "flex", md: "none" },
+                            flexGrow: 1,
+                            fontFamily: "monospace",
+                            fontWeight: 700,
+                            letterSpacing: ".3rem",
+                            color: "inherit",
+                            textDecoration: "none",
+                        }}
+                    >
+                        Oasis
+                    </Typography>
+                    <Box
+                        sx={{
+                            flexGrow: 1,
+                            display: { xs: "none", md: "flex" },
+                        }}
+                    >
+                        {pages.map((page) => (
+                            <Button
+                                key={page}
+                                onClick={handleCloseNavMenu}
+                                sx={{ my: 2, color: "white", display: "block" }}
+                            >
+                                {page}
+                            </Button>
+                        ))}
+                    </Box>
 
+                    {!localStorage.getItem("token") ? (
+                        <Box
+                            justifyContent={"flex-end"}
+                            sx={{
+                                flexGrow: 1,
+                                display: { xs: "none", md: "flex" },
+                                paddingRight: "15px",
+                            }}
+                        >
+                            <Button
+                                key="login"
+                                onClick={handleLogin}
+                                sx={{ my: 2, color: "white", display: "block" }}
+                            >
+                                Login
+                            </Button>
+                        </Box>
+                    ) : (
+                        <Box sx={{ flexGrow: 0 }}>
+                            <Tooltip title="Open settings">
+                                <IconButton
+                                    onClick={handleOpenUserMenu}
+                                    sx={{ p: 0 }}
+                                >
+                                    <Avatar alt="Remy Sharp" src="Logo" />
+                                </IconButton>
+                            </Tooltip>
+                            <Menu
+                                sx={{ mt: "45px" }}
+                                id="menu-appbar"
+                                anchorEl={anchorElUser}
+                                anchorOrigin={{
+                                    vertical: "top",
+                                    horizontal: "right",
+                                }}
+                                keepMounted
+                                transformOrigin={{
+                                    vertical: "top",
+                                    horizontal: "right",
+                                }}
+                                open={Boolean(anchorElUser)}
+                                onClose={handleCloseUserMenu}
+                            >
+                                {settings.map((setting, index) => (
+                                    <MenuItem
+                                        key={setting}
+                                        onClick={handlerFunctions[index]}
+                                    >
+                                        <Typography textAlign="center">
+                                            {setting}
+                                        </Typography>
+                                    </MenuItem>
+                                ))}
+                            </Menu>
+                        </Box>
+                    )}
+                </Toolbar>
+            </Container>
+        </AppBar>
+    );
+};
 export default Navbar;

@@ -22,8 +22,8 @@ function Signin() {
     const [password, setPassword] = useState("");
 
     const handleLogin = () => {
-        signInWithEmailAndPassword(auth, email, password).then(
-            (userCredential) => {
+        signInWithEmailAndPassword(auth, email, password)
+            .then((userCredential) => {
                 console.log({ userCredential });
 
                 axios
@@ -40,17 +40,14 @@ function Signin() {
                         console.log({ error });
                     });
 
-                console.log(userCredential.user);
-                // const stsTokenManager = userCredential.user.stsTokenManager;
                 localStorage.setItem(
                     "token",
                     JSON.stringify(userCredential.user)
                 );
-            }
-        );
-        // .catch((error) => {
-        //     console.log({ error });
-        // });
+            })
+            .catch((error) => {
+                console.log({ error });
+            });
     };
 
     return (

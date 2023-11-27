@@ -15,6 +15,8 @@ import { Link } from "react-router-dom";
 import { auth } from "./../../../utils/firebaseAuth";
 import { signInWithEmailAndPassword } from "firebase/auth";
 
+import axios from "axios";
+
 function Signin() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -23,6 +25,25 @@ function Signin() {
         signInWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
                 console.log({ userCredential });
+
+                axios
+                    .post("http://127.0.0.1:5675/api/v1/publish", {
+                        topicId: "userLogin",
+                        data: {
+                            email,
+                        },
+                    })
+                    .then((response) => {
+                        console.log({ response });
+                    })
+                    .catch((error) => {
+                        console.log({ error });
+                    });
+
+                localStorage.setItem(
+                    "token",
+                    JSON.stringify(userCredential.user)
+                );
             })
             .catch((error) => {
                 console.log({ error });
@@ -35,7 +56,7 @@ function Signin() {
                 <CssBaseline />
                 <Box
                     sx={{
-                        mt: 20,
+                        mt: 15,
                         display: "flex",
                         flexDirection: "column",
                         alignItems: "center",

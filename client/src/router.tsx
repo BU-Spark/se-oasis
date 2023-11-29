@@ -9,6 +9,7 @@ import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 import Auth from "./components/Auth";
 import ProfilePage from "./components/ProfilePage";
+import JournalEntry from "./components/JournalEntry";
 
 const Routers: React.FC = () => (
     <Suspense
@@ -44,6 +45,14 @@ const Routers: React.FC = () => (
                     </Auth>
                 }
             />
+            <Route 
+                path="/journal" 
+                element={
+                    <Auth>
+                        <JournalEntry />
+                    </Auth>
+                } 
+            /> 
         </Routes>
         <>
             <Footer />

@@ -9,9 +9,9 @@ const LandingPage: React.FunctionComponent = () => {
     return (
         <Grid
             xs={10}
-            // display="flex"
-            // align-items="center"
-            // justifyContent="center"
+            display="flex"
+            align-items="center"
+            justifyContent="center"
             bgcolor={"#f5ddc1"}
         >
             <CalendarComponent />

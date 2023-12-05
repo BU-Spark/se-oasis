@@ -25,7 +25,10 @@ const GetSecretsRoute = {
         tags: ["api", "getSecretsRotue"],
     },
     handler: async (request, h) => {
-        let secretManagerClient = new SecretManagerServiceClient(googleCreds);
+        let secretManagerClient = new SecretManagerServiceClient({
+            projectId: "se-oasis",
+            credentials: googleCreds,
+        });
 
         const secretRequest = {
             name: `projects/668242185170/secrets/${request.params.secretName}/versions/${request.params.versionNumber}`,

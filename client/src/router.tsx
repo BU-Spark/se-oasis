@@ -45,14 +45,14 @@ const Routers: React.FC = () => (
                     </Auth>
                 }
             />
-            <Route 
-                path="/journal" 
+            <Route
+                path="/journal"
                 element={
                     <Auth>
                         <JournalEntry />
                     </Auth>
-                } 
-            /> 
+                }
+            />
         </Routes>
         <>
             <Footer />

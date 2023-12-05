@@ -8,6 +8,7 @@ import LandingPage from "./components/LandingPage";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 import Auth from "./components/Auth";
+import ProfilePage from "./components/ProfilePage";
 
 const Routers: React.FC = () => (
     <Suspense
@@ -24,6 +25,17 @@ const Routers: React.FC = () => (
             <Route path="/register" element={<Signup />} />
             <Route path="/signin" element={<Signin />} />
             <Route path="/about" element={<AboutPage />} />
+            <Route
+                path="/Profile"
+                element={
+                    <ProfilePage
+                        firstName="John"
+                        lastName="Doe"
+                        email="john.doe@example.com"
+                        phone="123-456-7890"
+                    />
+                }
+            />
             <Route
                 path="/home"
                 element={

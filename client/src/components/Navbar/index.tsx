@@ -45,6 +45,7 @@ const Navbar: React.FunctionComponent = () => {
 
     const handleProfileClick = () => {
         setAnchorElUser(null);
+        navigate("/profile");
     };
 
     const handleAccountClick = () => {

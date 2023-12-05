@@ -7,9 +7,7 @@ export const publishMessage = async (topicNameOrId, data) => {
 
     try {
         const messageId = await pubSubClient
-            .topic(
-                `projects/spark-se-oasis-wellbeing-bu/topics/${topicNameOrId}`
-            )
+            .topic(`projects/se-oasis/topics/${topicNameOrId}`)
             .publishMessage({ data: dataBuffer });
 
         return `Message Published: ${messageId}`;

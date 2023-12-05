@@ -10,6 +10,7 @@ const Footer: React.FC = () => {
         <footer
             style={{
                 ...bgStyle,
+                marginTop: "20px",
                 paddingTop: "5px",
                 paddingBottom: "5px",
                 paddingLeft: "20px",

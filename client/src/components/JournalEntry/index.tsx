@@ -84,12 +84,14 @@ const JournalEntry: React.FC<JournalEntryProps> = ({ defaultDate }) => {
         // Simulate API call to save journal data
         try {
             const response = await axios.post("http://127.0.0.1:5675/api/v1/publish", {
-                topicId: "journalEntrySaved",
+                topicId: "userJournalEntry",
                 data: {
                     jsonData: journalData, // Send the entire journalData object
                 },
             });
             console.log("Journal data saved:", response.data);
+            console.log("Journal data date:", journalData.date);
+            console.log("Journal data entry:", journalData.entry);
             // Reset state after successful submission (if needed)
             // setSelectedDate(new Date());
             // setTextEntry("");

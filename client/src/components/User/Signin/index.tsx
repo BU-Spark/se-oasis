@@ -14,12 +14,15 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { auth } from "./../../../utils/firebaseAuth";
 import { signInWithEmailAndPassword } from "firebase/auth";
+import { useNavigate } from "react-router";
 
 import axios from "axios";
 
 function Signin() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+
+    const navigate = useNavigate();
 
     const handleLogin = () => {
         signInWithEmailAndPassword(auth, email, password)
@@ -35,6 +38,7 @@ function Signin() {
                     })
                     .then((response) => {
                         console.log({ response });
+                        navigate("/home");
                     })
                     .catch((error) => {
                         console.log({ error });

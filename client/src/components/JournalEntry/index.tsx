@@ -1,6 +1,9 @@
 import React, { useState, useEffect, ChangeEvent } from "react";
 import { Grid, Typography, TextField, Button, Box } from "@mui/material";
 import axios from "axios";
+import { ref, uploadBytes, getDownloadURL} from "firebase/storage";
+import { collection, addDoc } from 'firebase/firestore';
+import { firestore, storage } from "../../utils/firebaseAuth";
 
 // Define a type for the structure of journalData
 type JournalData = {
@@ -10,6 +13,7 @@ type JournalData = {
         name: string;
         size: number;
         type: string;
+        content: string; // File content as a download URL
     };
 };
 
@@ -66,20 +70,45 @@ const JournalEntry: React.FC<JournalEntryProps> = ({ defaultDate }) => {
     // Function to handle form submission
     const handleSubmit = async () => {
         const journalData: JournalData = {
-            date: selectedDate!.toISOString(), // '!' asserts that selectedDate is not null
+            date: selectedDate!.toISOString(),
         };
-
+    
         if (textEntry) {
             journalData.entry = textEntry;
         }
-
+    
         if (selectedFile) {
-            journalData.file = {
-                name: selectedFile.name,
-                size: selectedFile.size,
-                type: selectedFile.type,
-            };
+            const storageRef = ref(storage, selectedFile.name);
+    
+            try {
+                // Upload file to Firebase Storage
+                const snapshot = await uploadBytes(storageRef, selectedFile);
+                console.log('File uploaded:', snapshot);
+    
+                // Get the download URL for the file
+                const downloadURL = await getDownloadURL(storageRef);
+                console.log('Download URL:', downloadURL);
+    
+                // Update journalData with file details
+                journalData.file = {
+                    name: selectedFile.name,
+                    size: selectedFile.size,
+                    type: selectedFile.type,
+                    content: downloadURL, // Save the file download URL in Firebase
+                };
+            } catch (error) {
+                console.error('Error uploading file:', error);
+            }
         }
+    
+        // Save journalData to Firestore
+        try {
+            const docRef = await addDoc(collection(firestore, 'journalEntries'), journalData);
+            console.log("Document written with ID: ", docRef.id);
+        } catch (error) {
+            console.error("Error adding document: ", error);
+        }
+    
 
         // Simulate API call to save journal data
         try {
@@ -92,6 +121,7 @@ const JournalEntry: React.FC<JournalEntryProps> = ({ defaultDate }) => {
             console.log("Journal data saved:", response.data);
             console.log("Journal data date:", journalData.date);
             console.log("Journal data entry:", journalData.entry);
+            console.log("Journal data entry:", journalData.file);
             // Reset state after successful submission (if needed)
             // setSelectedDate(new Date());
             // setTextEntry("");

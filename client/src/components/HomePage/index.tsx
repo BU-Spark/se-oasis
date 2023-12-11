@@ -1,5 +1,8 @@
 import { Button, CardMedia, Grid, Paper, Typography } from "@mui/material";
 import React from "react";
+import { useNavigate } from "react-router-dom"; // Import useNavigate hook
+
+// Asset imports
 // import Navbr from "../Navbar";
 // import homepagebg1 from "./../../assests/Homepagebg3.png";
 import neonBg from "./../../assests/oasis.jpg";
@@ -7,6 +10,12 @@ import neonBg from "./../../assests/oasis.jpg";
 import homePgBg2 from "./../../assests/workOasis.jpg";
 
 const HomePage = () => {
+    const navigate = useNavigate(); // Hook for navigation
+
+    const handleSignUpClick = () => {
+        navigate('/register'); // Navigate to the signup page
+    };
+
     return (
         <Grid
             container
@@ -75,6 +84,7 @@ const HomePage = () => {
                             backgroundColor: "white",
                             color: "#143155",
                         }}
+                        onClick={handleSignUpClick} // Added onClick event handler for redirection
                     >
                         Try Oasis Free
                     </Button>

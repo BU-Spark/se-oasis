@@ -12,10 +12,13 @@ import { Link } from "react-router-dom";
 import ReactEmojiRender from "react-emoji-render";
 import InsertDriveFileIcon from "@mui/icons-material/InsertDriveFile"; // Material-UI file icon
 import SentimentVerySatisfiedIcon from "@mui/icons-material/SentimentVerySatisfied"; // Material-UI smiley icon
+import { useNavigate } from "react-router";
 
 const LandingPage: React.FC = () => {
     const [selectedEmoji, setSelectedEmoji] = useState<string | null>(null);
     const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
+
+    const navigate = useNavigate();
 
     const handleEmojiSelect = (emoji: string) => {
         setSelectedEmoji(emoji);
@@ -32,6 +35,7 @@ const LandingPage: React.FC = () => {
 
     const onUpload = () => {
         setAnchorEl(null);
+        navigate("/journal");
     };
 
     const open = Boolean(anchorEl);
@@ -60,13 +64,14 @@ const LandingPage: React.FC = () => {
                         color="primary"
                         component="label"
                         startIcon={<InsertDriveFileIcon />}
+                        onClick={onUpload}
                     >
                         Upload File
-                        <input
+                        {/* <input
                             type="file"
                             style={{ display: "none" }}
-                            onChange={onUpload}
-                        />
+                            
+                        /> */}
                     </Button>
 
                     {/* Select Emoji Button */}

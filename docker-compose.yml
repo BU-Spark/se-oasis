@@ -1,0 +1,11 @@
+version: "3.8"
+services:
+    oasis-server:
+        build:
+            context: ./server
+            dockerfile: Dockerfile
+            labels:
+                com.oasis.description: "Oasis: Welbeing Server"
+                com.oasis.container: "Server Container"
+        ports:
+            - "5675:5675"

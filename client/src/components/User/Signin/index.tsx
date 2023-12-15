@@ -30,12 +30,17 @@ function Signin() {
                 console.log({ userCredential });
 
                 axios
-                    .post("http://127.0.0.1:5675/api/v1/publish", {
-                        topicId: "userLogin",
-                        data: {
-                            email,
-                        },
-                    })
+                    .post(
+                        `${process.env.SERVER_PROTOCOL || "http"}://${
+                            process.env.SERVER_HOST || "127.0.0.1"
+                        }:${process.env.SERVER_PORT || "5675"}/api/v1/publish`,
+                        {
+                            topicId: "userLogin",
+                            data: {
+                                email,
+                            },
+                        }
+                    )
                     .then((response) => {
                         console.log({ response });
                         navigate("/home");

@@ -5,7 +5,16 @@ services:
             context: ./server
             dockerfile: Dockerfile
             labels:
-                com.oasis.description: "Oasis: Welbeing Server"
+                com.oasis.description: "Oasis: Wellbeing Server"
                 com.oasis.container: "Server Container"
         ports:
             - "5675:5675"
+    oasis-client:
+        build:
+            context: ./client
+            dockerfile: Dockerfile
+            labels:
+                com.oasis.description: "Oasis: Wellbeing Client"
+                com.oasis.container: "Client Container"
+        ports:
+            - "8085:8085"

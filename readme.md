@@ -13,7 +13,18 @@ Oasis also provides the ability to give the AI context by allowing users to uplo
 
 ## Quick Tour
 
-{content}
+### Folder Structure 
+
+**Main components **
+
+1. Client
+2. Server
+
+
+Client structure :
+
+<img width="255" alt="Screenshot 2023-12-16 at 2 36 58 PM" src="https://github.com/BU-Spark/se-oasis/assets/63293318/ca0246f0-660c-4e63-bf9a-e71f76244aff">
+
 
 ## Tech Stack
 

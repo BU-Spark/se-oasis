@@ -21,11 +21,40 @@ Oasis also provides the ability to give the AI context by allowing users to uplo
 2. Server
 
 
-Client structure :
+### (Front-End) Client structure :
 
+<img width="249" alt="Screenshot 2023-12-16 at 2 36 45 PM" src="https://github.com/BU-Spark/se-oasis/assets/63293318/d31a6ed2-3ef5-400c-895b-a0e7adca58aa">
+
+src: Folder has various sub folders inside it referring to different usages as explained below.
+  _assests: This folder has all the images, logos for the application till now. In future the videos and photographs of the team could be added. As and when required can be used by giving reference of thid folder.  
+  _components: This folder has all the fron-ent pages that is developed and deployed till now. Each page is made as a sub-folder and a index.js file is used to write the main code for that specific page and styles.css file is used to add stylesheet.
+_config : This folder has the configurations from front-end to different middleware components.
+_utils: This folder has the authentication for various components connected to the Login and SignUp pages. In future the authentication for maintaing app securely.
+
+README.md - File to explain the client folders and their usage. 
+
+### (Back-end) server structure: 
 <img width="255" alt="Screenshot 2023-12-16 at 2 36 58 PM" src="https://github.com/BU-Spark/se-oasis/assets/63293318/ca0246f0-660c-4e63-bf9a-e71f76244aff">
 
+_config : This folder has the configurations from back-end to different backend components like tge deployment credentials or authentication to DB.
 
+src : Folder has various sub folders inside it referring to different usages as explained below.
+_routes : 
+
+_microservices: 
+
+_utils: 
+
+### core structure : This folder is used to get Event-driven architectural components into the framework.
+Eventlisteners files are added for both Login and SignUp events that are completed till now. In future the same folder can be used to add the remaining events as and when required.
+
+<img width="257" alt="Screenshot 2023-12-16 at 2 37 09 PM" src="https://github.com/BU-Spark/se-oasis/assets/63293318/a663273b-64e6-4397-acd1-1d403190348b">
+
+### Project Files structure
+This is used to maintain all the architecture level desicion daigrams or any documents related to the project.
+<img width="257" alt="Screenshot 2023-12-16 at 2 37 16 PM" src="https://github.com/BU-Spark/se-oasis/assets/63293318/cfeac5a4-e5b7-47d0-abd2-1804b591a227">
+
+README.md - File to explain the server folders and their usage. 
 ## Tech Stack
 
 | Component | Name |

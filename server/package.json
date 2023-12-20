@@ -1,0 +1,44 @@
+{
+    "name": "oasis-wellbeing",
+    "version": "1.0.0",
+    "description": "Mental Health App",
+    "main": "index.js",
+    "scripts": {
+        "start": "npx nodemon --exec babel-node index.js | bunyan",
+        "prod": "npx babel-node index.js | bunyan",
+        "test": "npx jest --forceExit --runInBand"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/BU-Spark/se-oasis.git"
+    },
+    "author": "Harshitha, Vishwas & Erwin",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/BU-Spark/se-oasis/issues"
+    },
+    "homepage": "https://github.com/BU-Spark/se-oasis#readme",
+    "devDependencies": {
+        "@babel/cli": "^7.23.0",
+        "@babel/core": "^7.23.2",
+        "@babel/node": "^7.22.19",
+        "@babel/plugin-transform-runtime": "^7.14.3",
+        "@babel/preset-env": "^7.23.2",
+        "babel-plugin-module-resolver": "^4.1.0",
+        "dotenv": "^16.3.1",
+        "jest": "^29.7.0",
+        "nodemon": "^3.0.1"
+    },
+    "dependencies": {
+        "@google-cloud/pubsub": "^4.0.7",
+        "@google-cloud/secret-manager": "^5.0.1",
+        "@hapi/hapi": "^21.3.2",
+        "@hapi/inert": "^6.0.3",
+        "@hapi/vision": "^6.1.0",
+        "bunyan": "^1.8.15",
+        "config": "^3.3.9",
+        "dotenv": "^9.0.2",
+        "hapi-swagger": "^17.2.0",
+        "pg": "^8.11.3"
+    }
+}

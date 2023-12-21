@@ -10,8 +10,6 @@ const getAndSaveFirebaseConfig = async () => {
                 process.env.SERVER_PORT || "5675"
             }/api/v1/secrets/firebaseConfig/2`
         );
-
-        console.log(JSON.parse(firebaseConfig.data.payload));
         fs.writeFileSync(
             "firebaseConfig.json",
             JSON.stringify(JSON.parse(firebaseConfig.data.payload)),

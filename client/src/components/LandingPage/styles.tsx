@@ -18,7 +18,3 @@ export const logoStyle: React.CSSProperties = {
     height: "50px", // Adjust the height as needed
     marginRight: "1rem", // Adjust the margin as needed
 };
-
-// export default navbarStyle;
-// export default logoContainerStyle;
-// export default logoStyle;

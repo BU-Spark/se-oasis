@@ -1,11 +1,7 @@
 import { PubSub } from "@google-cloud/pubsub";
-import googleCreds from "./../../config/googleCredentials.json";
 
 export const publishMessage = async (topicNameOrId, data) => {
-    const pubSubClient = new PubSub({
-        projectId: "se-oasis",
-        credentials: googleCreds,
-    });
+    const pubSubClient = new PubSub();
     const dataBuffer = Buffer.from(JSON.stringify(data));
 
     try {

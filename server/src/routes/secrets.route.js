@@ -1,5 +1,4 @@
 import { SecretManagerServiceClient } from "@google-cloud/secret-manager";
-import googleCreds from "./../../config/googleCredentials.json";
 
 const SecretsIndexRoute = {
     path: "/secrets/index",
@@ -25,10 +24,7 @@ const GetSecretsRoute = {
         tags: ["api", "getSecretsRotue"],
     },
     handler: async (request, h) => {
-        let secretManagerClient = new SecretManagerServiceClient({
-            projectId: "se-oasis",
-            credentials: googleCreds,
-        });
+        let secretManagerClient = new SecretManagerServiceClient();
 
         const secretRequest = {
             name: `projects/668242185170/secrets/${request.params.secretName}/versions/${request.params.versionNumber}`,

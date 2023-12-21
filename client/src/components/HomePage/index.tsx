@@ -1,19 +1,16 @@
 import { Button, CardMedia, Grid, Paper, Typography } from "@mui/material";
 import React from "react";
-import { useNavigate } from "react-router-dom"; // Import useNavigate hook
+import { useNavigate } from "react-router-dom";
 
 // Asset imports
-// import Navbr from "../Navbar";
-// import homepagebg1 from "./../../assests/Homepagebg3.png";
 import neonBg from "./../../assests/oasis.jpg";
-//bright-yellow-neon-green-wallpaper-preview.jpg";
 import homePgBg2 from "./../../assests/workOasis.jpg";
 
 const HomePage = () => {
     const navigate = useNavigate(); // Hook for navigation
 
     const handleSignUpClick = () => {
-        navigate('/register'); // Navigate to the signup page
+        navigate("/register"); // Navigate to the signup page
     };
 
     return (
@@ -126,22 +123,6 @@ const HomePage = () => {
                                 image={`${homePgBg2}`}
                             />
                         </div>
-                        {/* <Paper
-                        elevation={0}
-                        sx={{
-                            height: "100%",
-                            backgroundImage: `url(${homePgBg2})`,
-                            // backgroundSize: "cover",
-                            backgroundRepeat: "no-repeat",
-                            borderRadius: "15px",
-                            display: "flex",
-                            flexDirection: "column",
-                            alignItems: "center",
-                            justifyContent: "center",
-                            boxSizing: "border-box",
-                            overflow: "hidden",
-                        }}
-                    ></Paper> */}
                     </Grid>
                     <Grid
                         item

@@ -130,9 +130,6 @@ const JournalEntry: React.FC<JournalEntryProps> = ({ defaultDate }) => {
             console.log("Journal data entry:", journalData.entry);
             console.log("Journal data entry:", journalData.file);
             // Reset state after successful submission (if needed)
-            // setSelectedDate(new Date());
-            // setTextEntry("");
-            // setSelectedFile(null);
         } catch (error) {
             console.error("Error saving journal data:", error);
         }

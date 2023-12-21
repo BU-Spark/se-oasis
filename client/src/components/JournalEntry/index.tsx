@@ -1,8 +1,8 @@
 import React, { useState, useEffect, ChangeEvent } from "react";
 import { Grid, Typography, TextField, Button, Box } from "@mui/material";
 import axios from "axios";
-import { ref, uploadBytes, getDownloadURL} from "firebase/storage";
-import { collection, addDoc } from 'firebase/firestore';
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { collection, addDoc } from "firebase/firestore";
 import { firestore, storage } from "../../utils/firebaseAuth";
 
 // Define a type for the structure of journalData
@@ -47,11 +47,11 @@ const JournalEntry: React.FC<JournalEntryProps> = ({ defaultDate }) => {
     const handleDateChange = (event: ChangeEvent<HTMLInputElement>) => {
         // Get the selected date from the input value
         const selected = new Date(event.target.value);
-        
+
         // Adjust for time zone offset to display the correct date
         const offset = selected.getTimezoneOffset() * 60 * 1000;
         const correctedDate = new Date(selected.getTime() + offset);
-        
+
         setSelectedDate(correctedDate);
     };
 
@@ -72,23 +72,23 @@ const JournalEntry: React.FC<JournalEntryProps> = ({ defaultDate }) => {
         const journalData: JournalData = {
             date: selectedDate!.toISOString(),
         };
-    
+
         if (textEntry) {
             journalData.entry = textEntry;
         }
-    
+
         if (selectedFile) {
             const storageRef = ref(storage, selectedFile.name);
-    
+
             try {
                 // Upload file to Firebase Storage
                 const snapshot = await uploadBytes(storageRef, selectedFile);
-                console.log('File uploaded:', snapshot);
-    
+                console.log("File uploaded:", snapshot);
+
                 // Get the download URL for the file
                 const downloadURL = await getDownloadURL(storageRef);
-                console.log('Download URL:', downloadURL);
-    
+                console.log("Download URL:", downloadURL);
+
                 // Update journalData with file details
                 journalData.file = {
                     name: selectedFile.name,
@@ -97,27 +97,34 @@ const JournalEntry: React.FC<JournalEntryProps> = ({ defaultDate }) => {
                     content: downloadURL, // Save the file download URL in Firebase
                 };
             } catch (error) {
-                console.error('Error uploading file:', error);
+                console.error("Error uploading file:", error);
             }
         }
-    
+
         // Save journalData to Firestore
         try {
-            const docRef = await addDoc(collection(firestore, 'journalEntries'), journalData);
+            const docRef = await addDoc(
+                collection(firestore, "journalEntries"),
+                journalData
+            );
             console.log("Document written with ID: ", docRef.id);
         } catch (error) {
             console.error("Error adding document: ", error);
         }
-    
 
         // Simulate API call to save journal data
         try {
-            const response = await axios.post("http://127.0.0.1:5675/api/v1/publish", {
-                topicId: "userJournalEntry",
-                data: {
-                    jsonData: journalData, // Send the entire journalData object
-                },
-            });
+            const response = await axios.post(
+                `${process.env.SERVER_PROTOCOL || "http"}://${
+                    process.env.SERVER_HOST || "127.0.0.1"
+                }:${process.env.SERVER_PORT || "5675"}/api/v1/publish`,
+                {
+                    topicId: "userJournalEntry",
+                    data: {
+                        jsonData: journalData, // Send the entire journalData object
+                    },
+                }
+            );
             console.log("Journal data saved:", response.data);
             console.log("Journal data date:", journalData.date);
             console.log("Journal data entry:", journalData.entry);
@@ -184,7 +191,11 @@ const JournalEntry: React.FC<JournalEntryProps> = ({ defaultDate }) => {
                         onChange={handleFileSubmission}
                     />
                     {/* Upload button */}
-                    <Button variant="contained" color="primary" onClick={handleSubmit}>
+                    <Button
+                        variant="contained"
+                        color="primary"
+                        onClick={handleSubmit}
+                    >
                         Upload
                     </Button>
                 </Box>

@@ -13,7 +13,6 @@ import {
 import { Link } from "react-router-dom";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../../utils/firebaseAuth";
-
 import axios from "axios";
 
 function Signup() {
@@ -33,13 +32,18 @@ function Signup() {
                 console.log({ userCredential });
 
                 axios
-                    .post("http://127.0.0.1:5675/api/v1/publish", {
-                        topicId: "userRegistered",
-                        data: {
-                            email,
-                            fullName,
-                        },
-                    })
+                    .post(
+                        `${process.env.SERVER_PROTOCOL || "http"}://${
+                            process.env.SERVER_HOST || "127.0.0.1"
+                        }:${process.env.SERVER_PORT || "5675"}/api/v1/publish`,
+                        {
+                            topicId: "userRegistered",
+                            data: {
+                                email,
+                                fullName,
+                            },
+                        }
+                    )
                     .then((response) => {
                         console.log({ response });
                     })

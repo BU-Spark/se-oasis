@@ -32,6 +32,7 @@ sudo rm default
 sudo touch default
 echo "server {
     listen 8085;
+    listen [::]:8085;
     server_name 0.0.0.0;
     root /var/www/se-oasis/client/build;
     index index.html index.htm;

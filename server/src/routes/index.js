@@ -32,7 +32,7 @@ const allRoutes = Object.values(allRoutesObject).reduce(
 );
 
 const indexRoute = {
-    path: "",
+    path: "/",
     method: "GET",
     config: {
         description: "This is Index Route",

@@ -173,3 +173,5 @@ node_modules/
 
 googleCredentials.json
 firebaseConfig.json
+
+coverage-final.json

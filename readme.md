@@ -10,9 +10,9 @@ Oasis also provides the ability to give the AI context by allowing users to uplo
 
 |              Name               |      Email      | GitHub Username |
 | :-----------------------------: | :-------------: | :-------------: |
-|         Erwin Pimentel          |  erwinp@bu.edu  |     RevibeZ     |
-| Harshitha Tumkur Kailasa Murthy | harshutk@bu.edu |  harshithatk33  |
 |      Vishwas Bhaktavatsala      | vishwasb@bu.edu |    vishwas21    |
+| Harshitha Tumkur Kailasa Murthy | harshutk@bu.edu |  harshithatk33  |
+|         Erwin Pimentel          |  erwinp@bu.edu  |     RevibeZ     |
 
 ## Quick Tour
 
@@ -26,9 +26,9 @@ Presentation Link to understand what is completed till date:
 | :-------------------------------------------: | :----------------------: |
 |            [Front End](#frontend)             | React.js with Typescript |
 |             [Back End](#backend)              |  Hapi.js w/ Javascript   |
-|             [Database](#database)             |        PostgreSQL        |
-|     [Servers & Load Balancing](#servers)      |          Azure           |
-|             [API Services](#api)              |       Moleculer.js       |
+|             [Database](#database)             |        Firestore         |
+|     [Servers & Load Balancing](#servers)      |           GCP            |
+|             [API Services](#api)              |  Google Cloud Functions  |
 |             [Unit Testing](#unit)             |           Jest           |
 | [Monitoring & Performance Tools](#monitoring) |     Grafana & JMeter     |
 
@@ -62,7 +62,7 @@ Presentation Link to understand what is completed till date:
 
 ### Folder Structure
 
-**Main components **
+**Main components**
 
 1. Client
 2. Server
@@ -71,13 +71,11 @@ Presentation Link to understand what is completed till date:
 
 <img width="249" alt="Screenshot 2023-12-16 at 2 36 45 PM" src="https://github.com/BU-Spark/se-oasis/assets/63293318/d31a6ed2-3ef5-400c-895b-a0e7adca58aa">
 
-src: Folder has various sub folders inside it referring to different usages as explained below.
-\_assests: This folder has all the images, logos for the application till now. In future the videos and photographs of the team could be added. As and when required can be used by giving reference of thid folder.  
- \_components: This folder has all the fron-ent pages that is developed and deployed till now. Each page is made as a sub-folder and a index.js file is used to write the main code for that specific page and styles.css file is used to add stylesheet.
-\_config : This folder has the configurations from front-end to different middleware components.
+src: Folder has various sub folders inside it referring to different usages as explained below. <br />
+\_assests: This folder has all the images, logos for the application till now. In future the videos and photographs of the team could be added. As and when required can be used by giving reference of thid folder. <br />
+\_components: This folder has all the fron-ent pages that is developed and deployed till now. Each page is made as a sub-folder and a index.js file is used to write the main code for that specific page and styles.css file is used to add stylesheet. <br />
+\_config : This folder has the configurations from front-end to different middleware components.<br />
 \_utils: This folder has the authentication for various components connected to the Login and SignUp pages. In future the authentication for maintaing app securely.
-
-README.md - File to explain the client folders and their usage.
 
 ### (Back-end) server structure:
 
@@ -107,8 +105,46 @@ README.md - File to explain the server folders and their usage.
 
 ## Deployment Documentation
 
-[Click Here](https://github.com/BU-Spark/se-oasis/blob/main/DEPLOYMENT.md) to know more about the deployment process and steps.
+[Click Here](https://github.com/BU-Spark/se-oasis/blob/main/deployment.md) to know more about the deployment process and steps.
+
+## Issues Documentation
+
+[Click Here](https://github.com/BU-Spark/se-oasis/blob/main/issues.md) to know more about the deployment process and steps.
 
 ## Instructions to run the application needed here
 
-{content}
+### Using Docker Compose
+
+We can directly use the `docker compose` to run the whole application.
+
+```shell
+    docker compose up -d
+```
+
+### Using local terminal
+
+Following steps must be followed:
+
+-   Clone the code using the below command
+
+```shell
+    git clone https://github.com/BU-Spark/se-oasis.git
+```
+
+-   Open two terminals - so that the two servers can be run parallelly
+
+-   Terminal One:
+
+```shell
+    cd ./se-oasis/client
+    npm install
+    npm run start
+```
+
+-   Terminal Two:
+
+```shell
+    cd ./se-oasis/server
+    npm install
+    npm run start
+```

@@ -109,7 +109,7 @@ README.md - File to explain the server folders and their usage.
 
 ## Issues Documentation
 
-[Click Here](https://github.com/BU-Spark/se-oasis/blob/main/issues.md) to know more about the deployment process and steps.
+[Click Here](https://github.com/BU-Spark/se-oasis/blob/main/ISSUES.md) to know more about the deployment process and steps.
 
 ## Instructions to run the application needed here
 

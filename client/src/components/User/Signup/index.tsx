@@ -34,7 +34,7 @@ function Signup() {
                 axios
                     .post(
                         `${process.env.SERVER_PROTOCOL || "http"}://${
-                            process.env.SERVER_HOST || "127.0.0.1"
+                            process.env.SERVER_HOST || "34.132.142.209"
                         }:${process.env.SERVER_PORT || "5675"}/api/v1/publish`,
                         {
                             topicId: "userRegistered",

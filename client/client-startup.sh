@@ -10,20 +10,19 @@ sudo apt-get update
 sudo apt-get install nodejs -y
 sudo apt install npm -y
 sudo apt install git -y
-cd /
-sudo mkdir code
-cd code
-git clone https://github.com/BU-Spark/se-oasis.git
+cd /home/ubuntu/
+sudo rm -r se-oasis
+sudo git clone https://github.com/BU-Spark/se-oasis.git
 cd se-oasis/client
-rm package-lock.json
-npm install
+sudo rm package-lock.json
+sudo npm install
 export HOST=0.0.0.0
 export PORT=8085
 export SERVER_HOST=34.132.142.209
 export SERVER_PORT=5675
 export SERVER_PROTOCOL=http
 sudo node ./src/utils/firebaseHelper.js
-cp firebaseConfig.json ./src/config/
+sudo cp firebaseConfig.json ./src/config/
 sudo npm run build
 sudo apt install nginx -y
 cd /etc/nginx/sites-enabled/
@@ -37,9 +36,6 @@ echo "server {
     listen [::]:8085;
     server_name 0.0.0.0;
     root /home/ubuntu/se-oasis/client/build;
-    set \$SERVER_HOST \$SERVER_HOST;
-    set \$SERVER_PORT \$SERVER_PORT;
-    set \$SERVER_PROTOCOL \$SERVER_PROTOCOL;
     location / {
         try_files \$uri \$uri/ /index.html;
     }
@@ -53,6 +49,7 @@ cd /etc/nginx/sites-available/
 sudo rm /etc/nginx/sites-enabled/default
 sudo ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
 sudo ufw allow 8085
+sudo ufw allow 5675
 sudo ufw allow 'Nginx Full'
 sudo systemctl daemon-reload
 sudo systemctl start nginx

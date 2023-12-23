@@ -92,3 +92,31 @@ Note the IP address which is shown as the output of the above command
 ```
 
 -   Once the whole system is setup and the startup script has had some time to complete, shh into the VM to check the status of the server using the command `pm2 status`.
+
+### Client Server - ReactJS with TypeScript
+
+The Client Server which is developed using the ReactJS with TypeScript is also deployed to a Google Compute Engine VM with port 5675 open for egress and port 8085 open for ingress. The below steps can be followed to be able to successfully deploy the code:
+
+-   Once the client is complete and ready to be deployed, an optional step can be to test the client using docker containers.
+-   Set up gcloud in the local terminal or log into the cloud shell to be able to run the below commands.
+
+```shell
+gcloud compute instances create oasis-client
+    --project=se-oasis
+    --zone=us-central1-a
+    --machine-type=e2-medium
+    --network-interface=network-tier=PREMIUM,stack-type=IPV4_ONLY,subnet=default
+    --metadata=startup-script=\#\!\ /bin/bash$'\n'sudo\ apt\ update$'\n'sudo\ apt\ -y\ upgrade$'\n'sudo\ apt-get\ update$'\n'sudo\ apt-get\ install\ -y\ ca-certificates\ curl\ gnupg$'\n'sudo\ mkdir\ -p\ /etc/apt/keyrings$'\n'curl\ -fsSL\ https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key\ \|\ sudo\ gpg\ --dearmor\ -o\ /etc/apt/keyrings/nodesource.gpg$'\n'echo\ \"deb\ \[signed-by=/etc/apt/keyrings/nodesource.gpg\]\ https://deb.nodesource.com/node_18.x\ nodistro\ main\"\ \|\ sudo\ tee\ /etc/apt/sources.list.d/nodesource.list$'\n'sudo\ apt-get\ update$'\n'sudo\ apt-get\ install\ nodejs\ -y$'\n'sudo\ apt\ install\ npm\ -y$'\n'sudo\ apt\ install\ git\ -y$'\n'cd\ /home/ubuntu/$'\n'sudo\ rm\ -r\ se-oasis$'\n'sudo\ git\ clone\ https://github.com/BU-Spark/se-oasis.git$'\n'cd\ se-oasis/client$'\n'sudo\ rm\ package-lock.json$'\n'sudo\ npm\ install$'\n'export\ HOST=0.0.0.0$'\n'export\ PORT=8085$'\n'export\ SERVER_HOST=34.132.142.209$'\n'export\ SERVER_PORT=5675$'\n'export\ SERVER_PROTOCOL=http$'\n'sudo\ node\ ./src/utils/firebaseHelper.js$'\n'sudo\ cp\ firebaseConfig.json\ ./src/config/$'\n'sudo\ npm\ run\ build$'\n'sudo\ apt\ install\ nginx\ -y$'\n'cd\ /etc/nginx/sites-enabled/$'\n'sudo\ rm\ default$'\n'cd\ /etc/nginx/sites-available/$'\n'sudo\ rm\ default$'\n'sudo\ touch\ default$'\n'sudo\ chmod\ 777\ default$'\n'echo\ \"server\ \{$'\n'\ \ \ \ listen\ 8085\;$'\n'\ \ \ \ listen\ \[::\]:8085\;$'\n'\ \ \ \ server_name\ 0.0.0.0\;$'\n'\ \ \ \ root\ /home/ubuntu/se-oasis/client/build\;$'\n'\ \ \ \ location\ /\ \{$'\n'\ \ \ \ \ \ \ \ try_files\ \\\$uri\ \\\$uri/\ /index.html\;$'\n'\ \ \ \ \}$'\n'\ \ \ \ location\ =\ /favicon.ico\ \{$'\n'\ \ \ \ \ \ \ \ access_log\ off\;$'\n'\ \ \ \ \ \ \ \ log_not_found\ off\;$'\n'\ \ \ \ \}$'\n'\}\"\ \>\ default$'\n'sudo\ chmod\ 611\ default\;$'\n'cd\ /etc/nginx/sites-available/$'\n'sudo\ rm\ /etc/nginx/sites-enabled/default$'\n'sudo\ ln\ -s\ /etc/nginx/sites-available/default\ /etc/nginx/sites-enabled/default$'\n'sudo\ ufw\ allow\ 8085$'\n'sudo\ ufw\ allow\ 5675$'\n'sudo\ ufw\ allow\ \'Nginx\ Full\'$'\n'sudo\ systemctl\ daemon-reload$'\n'sudo\ systemctl\ start\ nginx$'\n'sudo\ systemctl\ daemon-reload$'\n'sudo\ systemctl\ restart\ nginx$'\n'sudo\ systemctl\ enable\ nginx
+    --maintenance-policy=MIGRATE
+    --provisioning-model=STANDARD
+    --service-account=spark-se-oasis-sa@se-oasis.iam.gserviceaccount.com
+    --scopes=https://www.googleapis.com/auth/cloud-platform
+    --tags=http-allow-8085,http-allow-5675,http-server,https-server
+    --create-disk=auto-delete=yes,boot=yes,device-name=oasis-client,image=projects/ubuntu-os-cloud/global/images/ubuntu-2004-focal-v20231213,mode=rw,size=10,type=projects/se-oasis/zones/us-central1-a/diskTypes/pd-balanced --no-shielded-secure-boot --shielded-vtpm --shielded-integrity-monitoring --labels=goog-ec-src=vm_add-gcloud --reservation-affinity=any
+```
+
+**Please note**: Add the service account and network tags which has been created with the right permissions and allow
+
+-   Once this command is run, we would need a Static IP address which needs to be assigned to this VM.
+
+-   To assign a Static IP Address for this VM, please follow the same steps which were followed with the server VM

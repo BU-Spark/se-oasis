@@ -19,27 +19,36 @@ rm package-lock.json
 npm install
 export HOST=0.0.0.0
 export PORT=8085
-export SERVER_PROTOCOL=http
 export SERVER_HOST=34.132.142.209
 export SERVER_PORT=5675
-node ./src/utils/firebaseHelper.js
+export SERVER_PROTOCOL=http
+sudo node ./src/utils/firebaseHelper.js
 cp firebaseConfig.json ./src/config/
+sudo npm run build
 sudo apt install nginx -y
 cd /etc/nginx/sites-enabled/
 sudo rm default
 cd /etc/nginx/sites-available/
 sudo rm default
 sudo touch default
+sudo chmod 777 default
 echo "server {
     listen 8085;
     listen [::]:8085;
     server_name 0.0.0.0;
-    root /var/www/se-oasis/client/build;
-    # Static files
+    root /home/ubuntu/se-oasis/client/build;
+    set \$SERVER_HOST \$SERVER_HOST;
+    set \$SERVER_PORT \$SERVER_PORT;
+    set \$SERVER_PROTOCOL \$SERVER_PROTOCOL;
     location / {
-        try_files $uri /index.html;
+        try_files \$uri \$uri/ /index.html;
+    }
+    location = /favicon.ico {
+        access_log off;
+        log_not_found off;
     }
 }" > default
+sudo chmod 611 default;
 cd /etc/nginx/sites-available/
 sudo rm /etc/nginx/sites-enabled/default
 sudo ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
